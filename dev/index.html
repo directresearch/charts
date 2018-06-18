@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="directcharts.js"></script>
+</head>
+
+<body>
+    <button onclick="chartMultipleSeriesStacked('bar')">Bar stacking -> ja</button>
+    <button onclick="chartMultipleSeries('bar')">Bar stacking -> nee</button>
+    <button onclick="chartSingleSerie('bar')">Bar enkele serie</button>
+    <button onclick="chartSingleAsSeries('bar')">Bar meerdere series</button>
+    <hr>
+    <button onclick="chartMultipleSeriesStacked('column')">Column stacking -> ja</button>
+    <button onclick="chartMultipleSeries('column')">Column stacking -> nee</button>
+    <button onclick="chartSingleSerie('column')">Column enkele serie</button>
+    <button onclick="chartSingleAsSeries('column')">Column meerdere series</button>
+    <hr>
+    <button onclick="chartSingleAsSeries('pie')">Pie</button>
+    <hr>
+    <button onclick="chartPrijsmeter('line')">Prijsmeter</button>
+    <hr>
+    <button onclick="chartNps('nps')">NPS</button>
+    <div id="chart"></div>
+    <pre id="chartOptions"></pre>
+    <script>
+      let settings = null;
+      let exportSettings = null;
+      let data = null;
+      let singleSerie = {
+        "Tokyo": [
+          {
+            name: 'jan',
+            data: 49.9
+          },
+          {
+            name: 'feb',
+            data: 19.9
+          },
+          {
+            name: 'mrt',
+            data: 9.9
+          }
+        ]
+      };
+      let singleSerieAsSeries = {
+        "Jan": [
+          {
+            name: 'jan',
+            data: 49.9
+          }
+        ],
+        "Feb": [
+          {
+            name: 'feb',
+            data: 29.9
+          }
+        ],
+        "Mrt": [
+          {
+            name: 'mrt',
+            data: 69.9
+          }
+        ]
+      };
+      let prijsmeter = {
+        "Goedkoop": [
+          {
+            name: '7.00',
+            data: 100
+          },
+          {
+            name: '12.00',
+            data: 100
+          },
+          {
+            name: '17.00',
+            data: 75
+          },
+          {
+            name: '22.00',
+            data: 25
+          },
+          {
+            name: '27.00',
+            data: 25
+          },
+          {
+            name: '32.00',
+            data: 25
+          },
+          {
+            name: '37.00',
+            data: 0
+          },
+          {
+            name: '42.00',
+            data: 0
+          }
+        ],
+        "Te goedkoop": [
+          {
+            name: '5.00',
+            data: 100
+          },
+          {
+            name: '10.00',
+            data: 75
+          },
+          {
+            name: '15.00',
+            data: 75
+          },
+          {
+            name: '20.00',
+            data: 0
+          },
+          {
+            name: '25.00',
+            data: 0
+          },
+          {
+            name: '30.00',
+            data: 0
+          },
+          {
+            name: '35.00',
+            data: 0
+          },
+          {
+            name: '40.00',
+            data: 0
+          }
+        ],
+        "Duur": [
+          {
+            name: '5.00',
+            data: 0
+          },
+          {
+            name: '10.00',
+            data: 0
+          },
+          {
+            name: '15.00',
+            data: 25
+          },
+          {
+            name: '20.00',
+            data: 75
+          },
+          {
+            name: '25.00',
+            data: 75
+          },
+          {
+            name: '30.00',
+            data: 100
+          },
+          {
+            name: '35.00',
+            data: 100
+          },
+          {
+            name: '40.00',
+            data: 100
+          }
+        ],
+        "Te Duur": [
+          {
+            name: '5.00',
+            data: 0
+          },
+          {
+            name: '10.00',
+            data: 0
+          },
+          {
+            name: '15.00',
+            data: 0
+          },
+          {
+            name: '20.00',
+            data: 25
+          },
+          {
+            name: '25.00',
+            data: 75
+          },
+          {
+            name: '30.00',
+            data: 75
+          },
+          {
+            name: '35.00',
+            data: 100
+          },
+          {
+            name: '40.00',
+            data: 100
+          }
+        ]
+      };
+      let multipleSeries = {
+        "Tokyo": [
+          {
+            name: 'jan',
+            data: 69.9
+          },
+          {
+            name: 'feb',
+            data: 9.9
+          },
+          {
+            name: 'mrt',
+            data: 29.9
+          }
+        ],
+        "Amsterdam": [
+        {
+            name: 'jan',
+            data: 12.0
+          },
+          {
+            name: 'feb',
+            data: 26.8
+          },
+          {
+            name: 'mrt',
+            data: 45.5
+          }
+        ],
+        "Apeldoorn": [
+        {
+            name: 'jan',
+            data: 6.0
+          },
+          {
+            name: 'feb',
+            data: 56.56
+          },
+          {
+            name: 'mrt',
+            data: 23.78
+          }
+        ]
+      };
+      function chartSingleSerie(typeChart) {
+        settings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 2,
+            "legendaPositie": "onder",
+            "colorPalet": "blauw-rood",
+            "chartTitle": "Test " + typeChart,
+            "chartSubtitle": "",
+            "percentages": true,
+            "as": true,
+            "raster": true,
+            "scale": 0,
+            "fontSize": 11,
+            "type": "serie"
+        };
+        exportSettings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 2,
+            "legendaPositie": "onder",
+            "colorPalet": "oranje",
+            "chartTitle": "Test " + typeChart,
+            "chartSubtitle": "",
+            "percentages": true,
+            "as": false,
+            "raster": false,
+            "scale": 100,
+            "fontSize": 30,
+            "type": "serie"
+        };
+        data = singleSerie;
+        renderChart(settings, exportSettings, data);
+      }
+
+      function chartSingleAsSeries(typeChart) {
+        settings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 0,
+            "legendaPositie": "right",
+            "colorPalet": "dr",
+            "chartTitle": "Test " + typeChart,
+            "chartSubtitle": "",
+            "percentages": true,
+            "as": false,
+            "raster": true,
+            "scale": 0,
+            "fontSize": '14px',
+            "type": "series"
+        };
+        exportSettings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 0,
+            "legendaPositie": "right",
+            "colorPalet": "oranje",
+            "chartTitle": "Test " + typeChart,
+            "chartSubtitle": "",
+            "percentages": true,
+            "as": false,
+            "raster": true,
+            "scale": 0,
+            "fontSize": 34,
+            "type": "series"
+        };
+        data = singleSerieAsSeries;
+        renderChart(settings, exportSettings, data);
+      }
+
+      function chartMultipleSeriesStacked(typeChart) {
+        settings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": true,
+            "decimalsValue": 0,
+            "legendaPositie": "onder",
+            "colorPalet": "rood-blauw",
+            "chartTitle": "Test font " + typeChart,
+            "chartSubtitle": "sub",
+            "percentages": false,
+            "as": true,
+            "raster": true,
+            "scale": 0,
+            "fontSize": 20,
+            "type": "series"
+        };
+        exportSettings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": true,
+            "decimalsValue": 2,
+            "legendaPositie": "onder",
+            "colorPalet": "oranje",
+            "chartTitle": "Test  11 " + typeChart,
+            "chartSubtitle": "sub",
+            "percentages": true,
+            "as": false,
+            "raster": false,
+            "scale": 100,
+            "fontSize": 34,
+            "type": "series"
+        };
+        data = multipleSeries;
+        renderChart(settings, exportSettings, data);
+      }
+
+      function chartMultipleSeries(typeChart) {
+        settings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 0,
+            "legendaPositie": "onder",
+            "colorPalet": "groen",
+            "chartTitle": "Test " + typeChart,
+            "chartSubtitle": "",
+            "percentages": false,
+            "as": true,
+            "raster": true,
+            "scale": 0,
+            "fontSize": '14px',
+            "type": "series"
+        };
+        exportSettings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 0,
+            "legendaPositie": "onder",
+            "colorPalet": "oranje",
+            "chartTitle": "Test " + typeChart,
+            "chartSubtitle": "",
+            "percentages": false,
+            "as": true,
+            "raster": true,
+            "scale": 0,
+            "fontSize": 34,
+            "type": "series"
+        };
+        data = multipleSeries;
+        renderChart(settings, exportSettings, data);
+      }
+
+      function chartPrijsmeter(typeChart) {
+        settings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 0,
+            "legendaPositie": "onder",
+            "colorPalet": "oranje",
+            "chartTitle": "Prijsmeter",
+            "chartSubtitle": "",
+            "percentages": true,
+            "as": true,
+            "raster": true,
+            "scale": 0,
+            "fontSize": 34,
+            "type": "serie"
+        };
+        exportSettings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 0,
+            "legendaPositie": "onder",
+            "colorPalet": "oranje",
+            "chartTitle": "Prijsmeter",
+            "chartSubtitle": "",
+            "percentages": true,
+            "as": true,
+            "raster": true,
+            "scale": 0,
+            "fontSize": 34,
+            "type": "serie"
+        };
+        data = prijsmeter;
+        renderChart(settings, exportSettings, data, 'intersections');
+      }
+
+      function chartNps(typeChart) {
+        settings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 0,
+            "legendaPositie": "rechts",
+            "colorPalet": "dr",
+            "chartTitle": "Test " + typeChart,
+            "chartSubtitle": "",
+            "percentages": true,
+            "as": false,
+            "raster": true,
+            "scale": 0,
+            "fontSize": 11,
+            "type": "series"
+        };
+        exportSettings = {
+            "cumulatief": "aan",
+            "hideCumulative": false,
+            "typeChart": typeChart,
+            "stacked": false,
+            "decimalsValue": 0,
+            "legendaPositie": "onder",
+            "colorPalet": "oranje",
+            "chartTitle": "Test " + typeChart,
+            "chartSubtitle": "",
+            "percentages": true,
+            "as": false,
+            "raster": true,
+            "scale": 0,
+            "fontSize": 34,
+            "type": "series"
+        };
+        data = singleSerieAsSeries;
+        renderChart(settings, exportSettings, data);
+      }
+
+      function renderChart(settings, exportSettings, data, callbackName) {
+        if (settings != null && data != null) {
+          let chart = new directcharts.Chart(data);
+          let chartOptions = chart.chartOptions(settings, exportSettings, data);
+
+          chart.renderChart('chart', chartOptions, callbackName);
+          // add options to pre tag
+          document.getElementById('chartOptions').innerHTML = JSON.stringify(chartOptions, undefined, 2);
+        }
+      }
+    </script>
+</body>
+
+</html>
