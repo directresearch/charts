@@ -66,7 +66,7 @@ export default class Base {
     if (settings) {
       fontSize = settings.fontSize;
     }
-    
+
     if (size === 'smaller') {
       return parseInt(fontSize, 10) - 2 + 'px';
     }
