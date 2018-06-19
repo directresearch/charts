@@ -30,6 +30,9 @@ const config = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
+  devServer: {
+    open: true
+  },
   module: {
     rules: [
       {

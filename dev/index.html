@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <script src="//code.highcharts.com/highcharts.js"></script>
+    <script src="//code.highcharts.com/modules/exporting.js"></script>
     <script src="directcharts.js"></script>
 </head>
 
@@ -482,9 +484,22 @@
       function renderChart(settings, exportSettings, data, callbackName) {
         if (settings != null && data != null) {
           let chart = new directcharts.Chart(data);
+          let intersections = directcharts.intersections;
+          
           let chartOptions = chart.chartOptions(settings, exportSettings, data);
 
-          chart.renderChart('chart', chartOptions, callbackName);
+          // check if valid data is given
+          if (typeof chartOptions !== 'object') {
+            alert('no valid chartOptions given');
+          }
+
+          // is there a valid callbackName given? Run that callback
+          // Ralf... it is best practise to not dynamically render callbacks
+          if (callbackName === 'intersections') {
+            Highcharts.chart('chart', chartOptions, intersections);
+          } else {
+            Highcharts.chart('chart', chartOptions);
+          }
           // add options to pre tag
           document.getElementById('chartOptions').innerHTML = JSON.stringify(chartOptions, undefined, 2);
         }

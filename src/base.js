@@ -1,8 +1,3 @@
-import Highcharts from 'highcharts';
-// Load the exporting module.
-import Exporting from 'highcharts/modules/exporting';
-// Initialize exporting module.
-Exporting(Highcharts);
 // Import chroma js
 import ColorGenerator from './colors.js';
 
