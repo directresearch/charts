@@ -61,10 +61,16 @@ export default class Base {
    * @return Object
    */
   parseFontSize(settings, size) {
-    if (size === 'smaller') {
-      return parseInt(settings.fontSize, 10) - 2 + 'px';
+    var fontSize = 11;
+
+    if (settings) {
+      fontSize = settings.fontSize;
     }
-    return parseInt(settings.fontSize, 10) + 'px';
+    
+    if (size === 'smaller') {
+      return parseInt(fontSize, 10) - 2 + 'px';
+    }
+    return parseInt(fontSize, 10) + 'px';
   }
 
   /**
