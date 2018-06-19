@@ -39,16 +39,16 @@ export default class Colors {
       return this.orangeColors(this.numberOfColors, 3);
     }
     if (this.type === 'rood-mono') {
-      return '#e2001a';
+      return ['#e2001a'];
     }
     if (this.type === 'blauw-mono') {
-      return '#009bd5';
+      return ['#009bd5'];
     }
     if (this.type === 'groen-mono') {
-      return '#57ab27';
+      return ['#57ab27'];
     }
     if (this.type === 'oranje-mono') {
-      return '#ed8c00';
+      return ['#ed8c00'];
     }
     return Chroma.scale(['#4f0700', '#e2001a', '#f6b2ba']).colors(this.numberOfColors);
   }

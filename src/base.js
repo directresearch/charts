@@ -16,39 +16,43 @@ export default class Base {
    * @return Object
    */
   baseOptions(settings) {
-    // change fontsize, only available when using baseoptions before other functions
-    this.fontSize = this.parseFontSize(settings, 'default');
-    // smaller frontsize 2 px less then fontsize, only available when using baseoptions before other functions
-    this.fontSizeSmaller = this.parseFontSize(settings, 'smaller');
-    // change decimals, only available when using baseoptions before other functions
-    this.decimals = this.parseDecimals(settings);
-    // some base options that are not chart type specific
-    let baseOptions = {
-      credits: {
-        enabled: false
-      }
-    };
 
-    // add title
-    baseOptions.title = this.title(settings);
-    // add subtitle
-    baseOptions.subtitle = this.subtitle(settings);
-    // add legend
-    baseOptions.legend = this.legend(settings);
-    // add plotoptions
-    baseOptions.plotOptions = this.plotoptions(settings);
-    // add xAxis
-    baseOptions.xAxis = this.xAxis(settings);
-    // add yAxis
-    baseOptions.yAxis = this.yAxis(settings);
-    // series
-    baseOptions.series = this.series;
-    // add colors
-    baseOptions.colors = this.colors(settings);
-    // add tooltip
-    baseOptions.tooltip = this.tooltip(settings);
+    if (settings) {
+      // change fontsize, only available when using baseoptions before other functions
+      this.fontSize = this.parseFontSize(settings, 'default');
+      // smaller frontsize 2 px less then fontsize, only available when using baseoptions before other functions
+      this.fontSizeSmaller = this.parseFontSize(settings, 'smaller');
+      // change decimals, only available when using baseoptions before other functions
+      this.decimals = this.parseDecimals(settings);
+      // some base options that are not chart type specific
+      let baseOptions = {
+        credits: {
+          enabled: false
+        }
+      };
 
-    return baseOptions;
+      // add title
+      baseOptions.title = this.title(settings);
+      // add subtitle
+      baseOptions.subtitle = this.subtitle(settings);
+      // add legend
+      baseOptions.legend = this.legend(settings);
+      // add plotoptions
+      baseOptions.plotOptions = this.plotoptions(settings);
+      // add xAxis
+      baseOptions.xAxis = this.xAxis(settings);
+      // add yAxis
+      baseOptions.yAxis = this.yAxis(settings);
+      // series
+      baseOptions.series = this.series;
+      // add colors
+      baseOptions.colors = this.colors(settings);
+      // add tooltip
+      baseOptions.tooltip = this.tooltip(settings);
+
+      return baseOptions;
+    }
+    return {};
   }
 
   /**
