@@ -263,10 +263,12 @@ export default class Base {
       type = settings.type;
     }
 
-    // show xAxis
-    if (type === 'series' || axis === false) {
+    // don't show xAxis if requested or when we parse series with one data point
+    if ((type === 'series' && this.numberOfDataPoints === 1) || axis === false) {
       visible = false;
     }
+
+    console.log(this.numberOfDataPoints, this.numberOfSeries);
 
     // are there categories? Show them
     categories = this.categories.length > 0 ? this.categories : [];
