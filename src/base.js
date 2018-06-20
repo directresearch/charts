@@ -105,8 +105,14 @@ export default class Base {
    * @return Object
    */
   title(settings) {
+    let chartTitle = '';
+
+    if (settings) {
+      chartTitle = settings.chartTitle;
+    }
+
     return {
-      text: settings.chartTitle,
+      text: chartTitle,
       style: {
         fontSize: this.fontSize
       }
@@ -122,8 +128,14 @@ export default class Base {
    * @return Object
    */
   subtitle(settings) {
+    let chartSubtitle = '';
+
+    if (settings) {
+      chartSubtitle = settings.chartSubtitle;
+    }
+
     return {
-      text: settings.chartSubtitle,
+      text: chartSubtitle,
       style: {
         fontSize: this.fontSizeSmaller
       }
@@ -148,12 +160,20 @@ export default class Base {
     let verticalAlign = 'bottom';
     let layout = 'horizontal';
     let padding = 20;
+    let legendaPositie = 'boven';
+    let chartType = '';
 
-    if (this.series.length > 1) {
+    if (settings) {
+      legendaPositie = settings.legendaPositie;
+      chartType = settings.typeChart;
+    }
+
+    // always show legend if we should generate a pie like chart
+    if (this.series.length > 1 || chartType === 'pie' || chartType === 'nps') {
       legendEnabled = true;
     }
 
-    if (settings.legendaPositie === 'rechts') {
+    if (legendaPositie === 'rechts') {
       align = 'right';
       verticalAlign = 'top';
       layout = 'vertical';
@@ -182,20 +202,27 @@ export default class Base {
     let colorByPoint = true;
     let percentages = true;
     let dataLabelsInside = false;
+    let type = '';
+
+    if (settings) {
+      stacked = settings.stacked;
+      percentages = settings.percentages;
+      type = settings.type;
+    }
 
     // Do we need to stack the series?
-    if (settings.stacked === true) {
+    if (stacked === true) {
       stacked = 'percent';
       dataLabelsInside = true;
     }
 
     // Don't show percentages in dataLabels if requested
-    if (settings.percentages === false) {
+    if (percentages === false) {
       percentages = false;
     }
 
     // Do we show multiple series, then color by serie instead of by point
-    if (settings.type === 'series') {
+    if (type === 'series') {
       colorByPoint = false;
     }
 
@@ -229,9 +256,14 @@ export default class Base {
     let gridLineWidth = 0;
     let categories = [];
     let visible = false;
+    let axis = false;
+
+    if (settings) {
+      axis = settings.as;
+    }
 
     // show xAxis
-    if (settings.as === true) {
+    if (axis === true) {
       visible = true;
     }
 
@@ -268,9 +300,14 @@ export default class Base {
     let title = false;
     let max = settings.scale > 0 ? settings.scale : undefined; // do we need a different scale?
     let min = 0;
+    let raster = false;
+
+    if (settings) {
+      raster = settings.raster;
+    }
 
     // hulplijnen tonen aan/uit
-    if (settings.raster === true) {
+    if (raster === true) {
       visible = true;
       gridLineWidth = 1;
     }
@@ -300,14 +337,21 @@ export default class Base {
    */
   colors(settings) {
     let numberOfColors = this.numberOfDataPoints;
+    let colorPalet = 'dr';
+    let type = 'serie';
+
+    if (settings) {
+      colorPalet = settings.colorPalet;
+      type = settings.type;
+    }
 
     // Show a table fomatted tooltip
-    if (settings.type === 'series') {
+    if (type === 'series') {
       numberOfColors = this.series.length;
     }
 
     // initiate Color class
-    let Color = new ColorGenerator(settings.colorPalet, numberOfColors);
+    let Color = new ColorGenerator(colorPalet, numberOfColors);
 
     return Color.renderColors();
   }
@@ -320,9 +364,14 @@ export default class Base {
    * @return Object
    */
   tooltip(settings) {
+    let type = 'serie';
+
+    if (settings) {
+      type = settings.type;
+    }
 
     // Show a table fomatted tooltip
-    if (settings.type === 'series' && this.numberOfDataPoints > 1) {
+    if (type === 'series' && this.numberOfDataPoints > 1) {
       return this.stackedTooltip(settings);
     }
 
@@ -382,28 +431,31 @@ export default class Base {
       chartOptions: {}
     };
 
-    // change fontsize, only available when using baseoptions before other functions
-    this.fontSize = this.parseFontSize(exportSettings, 'default');
-    // smaller frontsize 2 px less then fontsize, only available when using baseoptions before other functions
-    this.fontSizeSmaller = this.parseFontSize(exportSettings, 'smaller');
-    // change decimals, only available when using baseoptions before other functions
-    this.decimals = this.parseDecimals(exportSettings);
-    // add title
-    exportOptions.chartOptions.title = this.title(exportSettings);
-    // add subtitle
-    exportOptions.chartOptions.subtitle = this.subtitle(exportSettings);
-    // add legend
-    exportOptions.chartOptions.legend = this.legend(exportSettings);
-    // add plotOptions
-    exportOptions.chartOptions.plotOptions = this.plotoptions(exportSettings);
-    // add xAxis
-    exportOptions.chartOptions.xAxis = this.xAxis(exportSettings);
-    // add yAxis
-    exportOptions.chartOptions.yAxis = this.yAxis(exportSettings);
-    // add colors
-    exportOptions.chartOptions.colors = this.colors(exportSettings);
+    if (exportSettings) {
+      // change fontsize, only available when using baseoptions before other functions
+      this.fontSize = this.parseFontSize(exportSettings, 'default');
+      // smaller frontsize 2 px less then fontsize, only available when using baseoptions before other functions
+      this.fontSizeSmaller = this.parseFontSize(exportSettings, 'smaller');
+      // change decimals, only available when using baseoptions before other functions
+      this.decimals = this.parseDecimals(exportSettings);
+      // add title
+      exportOptions.chartOptions.title = this.title(exportSettings);
+      // add subtitle
+      exportOptions.chartOptions.subtitle = this.subtitle(exportSettings);
+      // add legend
+      exportOptions.chartOptions.legend = this.legend(exportSettings);
+      // add plotOptions
+      exportOptions.chartOptions.plotOptions = this.plotoptions(exportSettings);
+      // add xAxis
+      exportOptions.chartOptions.xAxis = this.xAxis(exportSettings);
+      // add yAxis
+      exportOptions.chartOptions.yAxis = this.yAxis(exportSettings);
+      // add colors
+      exportOptions.chartOptions.colors = this.colors(exportSettings);
 
-    return exportOptions;
+      return exportOptions;
+    }
+    return {};
   }
 
   parseData(data) {
