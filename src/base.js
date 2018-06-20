@@ -61,7 +61,7 @@ export default class Base {
    * @return Object
    */
   parseFontSize(settings, size) {
-    var fontSize = 11;
+    let fontSize = 11;
 
     if (settings) {
       fontSize = settings.fontSize;
@@ -79,7 +79,12 @@ export default class Base {
    * @return Object
    */
   parseDecimals(settings) {
-    return parseInt(settings.decimalsValue, 10);
+    let decimalsValue = 0;
+
+    if (settings) {
+      decimalsValue = settings.decimalsValue;
+    }
+    return parseInt(decimalsValue, 10);
   }
 
   /**
@@ -372,7 +377,10 @@ export default class Base {
    * @return Object
    */
   exporting(exportSettings) {
-    let exportOptions = {chartOptions: {}};
+    let exportOptions = {
+      enabled: true,
+      chartOptions: {}
+    };
 
     // change fontsize, only available when using baseoptions before other functions
     this.fontSize = this.parseFontSize(exportSettings, 'default');
