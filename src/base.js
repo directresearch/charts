@@ -390,8 +390,8 @@ export default class Base {
   stackedTooltip(settings) {
     return {
       headerFormat: '{point.key}<hr><table>',
-      pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-            '<td style="text-align: right">{point.y:.' + this.decimals + 'f}%</td></tr>',
+      pointFormat: '<tr><td>{series.name}: </td>' +
+            '<td style="text-align: right">{point.y:.' + this.decimals + 'f}% / {point.n}</td></tr>',
       footerFormat: '</table>',
       useHTML: true,
       shared: true
@@ -405,13 +405,13 @@ export default class Base {
    * @return Object
    */
   notStackedTooltip(settings) {
-    let pointFormat = '{series.name}: {point.y:.' + this.decimals + 'f}% <br> n = {point.y:.0f}';
+    let pointFormat = '{series.name}: {point.y:.' + this.decimals + 'f}% <br> n = {point.n:.0f}';
 
     /**
      * Toon geen serie naam als er geen meerdere series zijn
      */
     if (settings.type === 'serie') {
-      pointFormat = '{point.y:.' + this.decimals + 'f}% <br> n = {point.y:.0f}';
+      pointFormat = '{point.y:.' + this.decimals + 'f}% <br> n = {point.n:.0f}';
     }
 
     return {
@@ -473,7 +473,10 @@ export default class Base {
           this.categories.push(element.name);
         }
         // add data
-        serie.data.push(element.data);
+        serie.data.push({
+          y: element.data,
+          n: element.n
+        });
         serie.y = element.data;
       }
 
@@ -482,6 +485,7 @@ export default class Base {
       // add new series to existing series
       this.series.push(serie);
     }
+    console.log(this.series);
     this.numberOfSeries = this.series.length;
   }
 }
