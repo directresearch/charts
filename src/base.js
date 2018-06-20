@@ -339,15 +339,13 @@ export default class Base {
   colors(settings) {
     let numberOfColors = this.numberOfDataPoints;
     let colorPalet = 'dr';
-    let type = 'serie';
 
     if (settings) {
       colorPalet = settings.colorPalet;
-      type = settings.type;
     }
 
     // Show a table fomatted tooltip
-    if (type === 'series') {
+    if (this.numberOfSeries > 1) {
       numberOfColors = this.numberOfSeries;
     }
 
@@ -485,7 +483,6 @@ export default class Base {
       // add new series to existing series
       this.series.push(serie);
     }
-    console.log(this.series);
     this.numberOfSeries = this.series.length;
   }
 }
