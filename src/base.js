@@ -316,6 +316,7 @@ export default class Base {
     return {
       title: title,
       visible: visible,
+      reversedStacks: false,
       gridLineWidth: gridLineWidth,
       minorGridLineWidth: gridLineWidth,
       min: min,
