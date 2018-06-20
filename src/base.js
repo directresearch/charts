@@ -254,16 +254,18 @@ export default class Base {
   xAxis(settings) {
     let gridLineWidth = 0;
     let categories = [];
-    let visible = false;
-    let axis = false;
+    let visible = true;
+    let axis = true;
+    let type = 'serie';
 
     if (settings) {
       axis = settings.as;
+      type = settings.type;
     }
 
     // show xAxis
-    if (axis === true) {
-      visible = true;
+    if (type === 'series' || axis === false) {
+      visible = false;
     }
 
     // are there categories? Show them

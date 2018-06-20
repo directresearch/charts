@@ -255,7 +255,7 @@
             "stacked": false,
             "decimalsValue": 2,
             "legendaPositie": "onder",
-            "colorPalet": "rood-mono",
+            "colorPalet": "rood",
             "chartTitle": "Test " + typeChart,
             "chartSubtitle": "",
             "percentages": true,
@@ -288,22 +288,23 @@
 
       function chartSingleAsSeries(typeChart) {
         settings = {
-            "cumulatief": "aan",
-            "hideCumulative": false,
-            "typeChart": typeChart,
-            "stacked": false,
-            "decimalsValue": 0,
-            "legendaPositie": "right",
-            "colorPalet": "dr",
-            "chartTitle": "Test " + typeChart,
-            "chartSubtitle": "",
-            "percentages": true,
-            "as": false,
-            "raster": true,
-            "scale": 0,
-            "fontSize": '14px',
-            "type": "series"
+          "cumulatief": "aan",
+          "hideCumulative": false,
+          "typeChart": typeChart,
+          "stacked": false,
+          "decimalsValue": 0,
+          "legendaPositie": "onder",
+          "colorPalet": "blauw-rood",
+          "chartTitle": "",
+          "chartSubtitle": "",
+          "percentages": true,
+          "as": true,
+          "raster": true,
+          "scale": 0,
+          "fontSize": 11,
+          "type": "series"
         };
+        
         exportSettings = {
             "cumulatief": "aan",
             "hideCumulative": false,
