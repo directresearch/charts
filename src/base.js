@@ -268,8 +268,6 @@ export default class Base {
       visible = false;
     }
 
-    console.log(this.numberOfDataPoints, this.numberOfSeries);
-
     // are there categories? Show them
     categories = this.categories.length > 0 ? this.categories : [];
 
