@@ -70,6 +70,7 @@ export default class Pie extends Base {
       // add new series to existing series
       this.series.push(serie);
     }
+    this.numberOfSeries = this.series.length;
     // pi specific
     let piedata = [{
       data: this.series,

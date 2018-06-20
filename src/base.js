@@ -6,6 +6,7 @@ export default class Base {
     this.categories = [];
     this.series = [];
     this.numberOfDataPoints = 1;
+    this.numberOfSeries = 1;
     this.fontSize = '11px';
     this.decimals = 1;
   }
@@ -161,15 +162,13 @@ export default class Base {
     let layout = 'horizontal';
     let padding = 20;
     let legendaPositie = 'boven';
-    let chartType = '';
 
     if (settings) {
       legendaPositie = settings.legendaPositie;
-      chartType = settings.typeChart;
     }
 
     // always show legend if we should generate a pie like chart
-    if (this.series.length > 1 || chartType === 'pie' || chartType === 'nps') {
+    if (this.numberOfSeries > 1) {
       legendEnabled = true;
     }
 
@@ -347,7 +346,7 @@ export default class Base {
 
     // Show a table fomatted tooltip
     if (type === 'series') {
-      numberOfColors = this.series.length;
+      numberOfColors = this.numberOfSeries;
     }
 
     // initiate Color class
@@ -481,6 +480,7 @@ export default class Base {
       // add new series to existing series
       this.series.push(serie);
     }
+    this.numberOfSeries = this.series.length;
   }
 }
 
