@@ -49,9 +49,9 @@ export default class Pie extends Base {
   parseData(data) {
     for (let serieName of Object.keys(data)) {
       let serie = {
-        'name': serieName,
-        'data': [],
-        'y': 0
+        name: serieName,
+        y: 0,
+        n: 0
       };
 
       // loop over series to add categories and data
@@ -61,12 +61,12 @@ export default class Pie extends Base {
           this.categories.push(element.name);
         }
         // add data
-        serie.data.push(element.data);
         serie.y = element.data;
+        serie.n = element.n;
       }
 
       // count number of datapoints
-      this.numberOfDataPoints = serie.data.length;
+      this.numberOfDataPoints = 1;
       // add new series to existing series
       this.series.push(serie);
     }
