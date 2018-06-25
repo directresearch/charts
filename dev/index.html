@@ -304,11 +304,11 @@
         exportSettings = {
             "cumulatief": "aan",
             "hideCumulative": false,
-            "typeChart": typeChart,
+            "typeChart": 'bar',
             "stacked": false,
             "decimalsValue": 2,
             "legendaPositie": "onder",
-            "colorPalet": "oranje",
+            "colorPalet": "dr",
             "chartTitle": "Test " + typeChart,
             "chartSubtitle": "",
             "percentages": true,
@@ -326,10 +326,10 @@
         settings = {
           "cumulatief": "aan",
           "hideCumulative": false,
-          "typeChart": typeChart,
+          "typeChart": 'bar',
           "stacked": false,
           "decimalsValue": 0,
-          "legendaPositie": "onder",
+          "legendaPositie": "rechts",
           "colorPalet": "blauw-rood",
           "chartTitle": "",
           "chartSubtitle": "",
@@ -342,21 +342,21 @@
         };
         
         exportSettings = {
-            "cumulatief": "aan",
-            "hideCumulative": false,
-            "typeChart": typeChart,
-            "stacked": false,
-            "decimalsValue": 0,
-            "legendaPositie": "right",
-            "colorPalet": "oranje",
-            "chartTitle": "Test " + typeChart,
-            "chartSubtitle": "",
-            "percentages": true,
-            "as": false,
-            "raster": true,
-            "scale": 0,
-            "fontSize": 34,
-            "type": "series"
+          "cumulatief": "uit",
+          "hideCumulative": true,
+          "typeChart": typeChart,
+          "stacked": false,
+          "decimalsValue": 0,
+          "legendaPositie": "onder",
+          "colorPalet": "blauw-rood",
+          "chartTitle": "",
+          "chartSubtitle": "",
+          "percentages": true,
+          "as": true,
+          "raster": true,
+          "scale": 0,
+          "fontSize": 13,
+          "type": "series"
         };
         data = singleSerieAsSeries;
         renderChart(settings, exportSettings, data);
@@ -387,7 +387,7 @@
             "stacked": true,
             "decimalsValue": 2,
             "legendaPositie": "onder",
-            "colorPalet": "oranje",
+            "colorPalet": "rood-blauw",
             "chartTitle": "Test  11 " + typeChart,
             "chartSubtitle": "sub",
             "percentages": true,

@@ -438,6 +438,8 @@ export default class Base {
       this.fontSizeSmaller = this.parseFontSize(exportSettings, 'smaller');
       // change decimals, only available when using baseoptions before other functions
       this.decimals = this.parseDecimals(exportSettings);
+      // add type
+      exportOptions.chartOptions.chart = this.chartType(exportSettings.typeChart);
       // add title
       exportOptions.chartOptions.title = this.title(exportSettings);
       // add subtitle
