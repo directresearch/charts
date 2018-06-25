@@ -4,28 +4,6 @@ Webpack based boilerplate for producing charts (Input: ES6, Output: universal li
 
 [![StyleCI](https://github.styleci.io/repos/137753828/shield?branch=master)](https://github.styleci.io/repos/137753828)
 
-## Features
-
-* Webpack 3 based.
-* ES6 as a source.
-* Exports in a [umd](https://github.com/umdjs/umd) format so your library works everywhere.
-* ES6 test setup with [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/).
-* Linting with [ESLint](http://eslint.org/).
-
-## Process
-
-```
-ES6 source files
-       |
-       |
-    webpack
-       |
-       +--- babel, eslint
-       |
-  ready to use
-     library
-  in umd format
-```
 
 *Have in mind that you have to build your library before publishing. The files under the `lib` folder are the ones that should be distributed.*
 
@@ -36,16 +14,17 @@ ES6 source files
   * Run `yarn build` or `npm run build` to produce minified version of your library.
 2. Development mode
   * Having all the dependencies installed run `yarn dev` or `npm run dev`. This command will generate an non-minified version of your library and will run a watcher so you get the compilation on file change.
-3. Running the tests
-  * Run `yarn test` or `npm run test`
+3. Running production
+  * Run `yarn build` or `npm run build`
+  * Bump version number in package.json
+  * Make new release in github `https://github.com/directresearch/charts/releases/new` with the same version number as package.json
+  * Check `jsdelivr` if new version is available thru there cdn `https://cdn.jsdelivr.net/gh/directresearch/charts/`
+  
+## Usage in Angular frontend
+
+1. Change correct version from `https://cdn.jsdelivr.net/gh/directresearch/charts/` in `index.blade.php`
 
 ## Scripts
 
 * `yarn build` or `npm run build` - produces production version of your library under the `lib` folder
 * `yarn dev` or `npm run dev` - produces development version of your library and runs a watcher
-* `yarn test` or `npm run test` - well ... it runs the tests :)
-* `yarn test:watch` or `npm run test:watch` - same as above but in a watch mode
-
-## Readings
-
-* [Start your own JavaScript library using webpack and ES6](http://krasimirtsonev.com/blog/article/javascript-library-starter-using-webpack-es6)
