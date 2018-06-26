@@ -75,7 +75,12 @@ export default class Prijsmeter extends Base {
     categories = this.categories.length > 0 ? this.categories : [];
 
     return {
-      categories: categories
+      categories: categories,
+      labels: {
+        formatter: function () {
+          return Number(this.value); // remove ending zeros
+        }
+      }
     };
   }
 
@@ -87,6 +92,8 @@ export default class Prijsmeter extends Base {
    * @return Object
    */
   tooltip(settings) {
+    let decimals = this.parseDecimals(settings);
+
     return {
       formatter: function () {
         let value = this.key;
@@ -101,8 +108,9 @@ export default class Prijsmeter extends Base {
         }
 
         return '<span style="font-size:10px">' + this.series.name + '</span><table><br>' +
-          '<tr> <span style="font-size:10px">' + value + ': </span><table> <td style="padding:0;font-size:10px">' +
-          this.y + '%</td></tr>';
+          '<tr> <span style="font-size:10px">' +
+          Number(value) + ': </span><table> <td style="padding:0;font-size:10px">' +
+          this.y.toFixed(decimals) + '%</td></tr>';
       }
     };
   }

@@ -8,7 +8,7 @@ export default class Base {
     this.numberOfDataPoints = 1;
     this.numberOfSeries = 1;
     this.fontSize = '11px';
-    this.decimals = 1;
+    this.decimals = 0;
   }
 
   /**
@@ -280,6 +280,7 @@ export default class Base {
       max: undefined,
       labels: {
         style: {
+          color: 'black',
           fontSize: this.fontSize
         }
       }
@@ -323,6 +324,7 @@ export default class Base {
       max: max,
       labels: {
         style: {
+          color: 'black',
           fontSize: this.fontSize
         }
       }

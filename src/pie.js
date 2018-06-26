@@ -31,15 +31,21 @@ export default class Pie extends Base {
    * @return Object
    */
   piePlotoptions(settings, existingOptions) {
+    existingOptions.series = {
+      stacking: null,
+      colorByPoint: true
+    };
     existingOptions.pie = {
       cursor: 'pointer',
       dataLabels: {
         enabled: true,
-        formatter: function () {
-          return this.point.y + ' %';
-        },
+        format: '{y:.' + this.decimals + 'f}%',
         distance: -30,
-        color: 'white'
+        style: {
+          fontSize: this.fontSize,
+          textShadow: 'none',
+          textOutline: 'none'
+        }
       },
       showInLegend: true
     };
