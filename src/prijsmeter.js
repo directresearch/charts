@@ -77,13 +77,10 @@ export default class Prijsmeter extends Base {
     return {
       categories: categories,
       labels: {
-        format: '{value}%',
+        format: '{value:,f}',
         style: {
           color: 'black',
           fontSize: this.fontSize
-        },
-        formatter: function () {
-          return String(Number(this.value)).replace('.', ','); // remove ending zeros
         }
       }
     };
