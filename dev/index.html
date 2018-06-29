@@ -455,7 +455,7 @@
             "as": true,
             "raster": true,
             "scale": 0,
-            "fontSize": 34,
+            "fontSize": 14,
             "type": "serie"
         };
         exportSettings = {
@@ -529,6 +529,13 @@
           if (typeof chartOptions !== 'object') {
             alert('no valid chartOptions given');
           }
+
+          Highcharts.setOptions({
+            lang: {
+              decimalPoint: ',',
+              thousandsSep: ' '
+            }
+          });
 
           // is there a valid callbackName given? Run that callback
           // Ralf... it is best practise to not dynamically render callbacks

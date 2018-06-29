@@ -323,6 +323,7 @@ export default class Base {
       min: min,
       max: max,
       labels: {
+        format: '{value}%',
         style: {
           color: 'black',
           fontSize: this.fontSize

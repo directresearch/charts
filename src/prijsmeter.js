@@ -77,8 +77,13 @@ export default class Prijsmeter extends Base {
     return {
       categories: categories,
       labels: {
+        format: '{value}%',
+        style: {
+          color: 'black',
+          fontSize: this.fontSize
+        },
         formatter: function () {
-          return Number(this.value); // remove ending zeros
+          return String(Number(this.value)).replace('.', ','); // remove ending zeros
         }
       }
     };
@@ -107,10 +112,10 @@ export default class Prijsmeter extends Base {
           value = Number(startValue + Number(Number(stepSize) * Number(this.x)));
         }
 
-        return '<span style="font-size:10px">' + this.series.name + '</span><table><br>' +
-          '<tr> <span style="font-size:10px">' +
-          Number(value) + ': </span><table> <td style="padding:0;font-size:10px">' +
-          this.y.toFixed(decimals) + '%</td></tr>';
+        return '<span>' + this.series.name + '</span><br /><table>' +
+          '<tr> <span>' +
+          String(Number(value)).replace('.', ',') + ': </span></tr> <td>' +
+          this.y.toFixed(decimals).replace('.', ',') + '%</td></tr></table>';
       }
     };
   }
@@ -129,7 +134,13 @@ export default class Prijsmeter extends Base {
       title: {
         text: ''
       },
-      max: 100
+      max: 100,
+      labels: {
+        style: {
+          color: 'black',
+          fontSize: this.fontSize
+        }
+      }
     };
   }
 
