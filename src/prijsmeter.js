@@ -133,6 +133,7 @@ export default class Prijsmeter extends Base {
       },
       max: 100,
       labels: {
+        format: '{value:,f}%',
         style: {
           color: 'black',
           fontSize: this.fontSize
