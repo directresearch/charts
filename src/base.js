@@ -236,6 +236,7 @@ export default class Base {
           format: '{y:.' + this.decimals + 'f}%',
           style: {
             fontSize: this.fontSize,
+            textShadow: 'none',
             textOutline: 'none'
           }
         }
