@@ -82,9 +82,10 @@ export default class Base {
   parseDecimals(settings) {
     let decimalsValue = 0;
 
-    if (settings) {
-      decimalsValue = settings.decimalsValue;
-    }
+    // decimalen in grafiek is uitgezet op 2-7-2018 omdat het niet/nauwelijks wordt gebruikt.
+    // if (settings) {
+    //   decimalsValue = settings.decimalsValue;
+    // }
     return parseInt(decimalsValue, 10);
   }
 
