@@ -289,10 +289,10 @@
             "hideCumulative": false,
             "typeChart": typeChart,
             "stacked": false,
-            "decimalsValue": 2,
+            "decimalsValue": 0,
             "legendaPositie": "onder",
-            "colorPalet": "rood",
-            "chartTitle": "Test " + typeChart,
+            "colorPalet": "blauw-mono",
+            "chartTitle": "",
             "chartSubtitle": "",
             "percentages": true,
             "as": true,
@@ -304,18 +304,18 @@
         exportSettings = {
             "cumulatief": "aan",
             "hideCumulative": false,
-            "typeChart": 'bar',
+            "typeChart": typeChart,
             "stacked": false,
-            "decimalsValue": 2,
+            "decimalsValue": 0,
             "legendaPositie": "onder",
-            "colorPalet": "dr",
-            "chartTitle": "Test " + typeChart,
+            "colorPalet": "blauw-mono",
+            "chartTitle": "",
             "chartSubtitle": "",
             "percentages": true,
-            "as": false,
+            "as": true,
             "raster": false,
-            "scale": 100,
-            "fontSize": 30,
+            "scale": 0,
+            "fontSize": 13,
             "type": "serie"
         };
         data = singleSerie;
@@ -326,26 +326,8 @@
         settings = {
           "cumulatief": "aan",
           "hideCumulative": false,
-          "typeChart": 'bar',
-          "stacked": true,
-          "decimalsValue": 0,
-          "legendaPositie": "rechts",
-          "colorPalet": "blauw-rood",
-          "chartTitle": "",
-          "chartSubtitle": "",
-          "percentages": true,
-          "as": true,
-          "raster": true,
-          "scale": 0,
-          "fontSize": 11,
-          "type": "series"
-        };
-        
-        exportSettings = {
-          "cumulatief": "uit",
-          "hideCumulative": true,
           "typeChart": typeChart,
-          "stacked": false,
+          "stacked": true,
           "decimalsValue": 0,
           "legendaPositie": "onder",
           "colorPalet": "blauw-rood",
@@ -353,7 +335,25 @@
           "chartSubtitle": "",
           "percentages": true,
           "as": true,
-          "raster": true,
+          "raster": false,
+          "scale": 0,
+          "fontSize": 11,
+          "type": "series"
+        };
+
+        exportSettings = {
+          "cumulatief": "aan",
+          "hideCumulative": true,
+          "typeChart": typeChart,
+          "stacked": true,
+          "decimalsValue": 0,
+          "legendaPositie": "onder",
+          "colorPalet": "blauw-rood",
+          "chartTitle": "",
+          "chartSubtitle": "",
+          "percentages": true,
+          "as": true,
+          "raster": false,
           "scale": 0,
           "fontSize": 13,
           "type": "series"
@@ -370,14 +370,14 @@
             "stacked": true,
             "decimalsValue": 0,
             "legendaPositie": "onder",
-            "colorPalet": "rood-blauw",
-            "chartTitle": "Test font " + typeChart,
-            "chartSubtitle": "sub",
+            "colorPalet": "blauw-rood",
+            "chartTitle": "",
+            "chartSubtitle": "",
             "percentages": true,
             "as": true,
-            "raster": true,
+            "raster": false,
             "scale": 0,
-            "fontSize": 20,
+            "fontSize":11,
             "type": "series"
         };
         exportSettings = {
@@ -385,16 +385,16 @@
             "hideCumulative": false,
             "typeChart": typeChart,
             "stacked": true,
-            "decimalsValue": 2,
+            "decimalsValue": 0,
             "legendaPositie": "onder",
-            "colorPalet": "rood-blauw",
-            "chartTitle": "Test  11 " + typeChart,
-            "chartSubtitle": "sub",
+            "colorPalet": "blauw-rood",
+            "chartTitle": "",
+            "chartSubtitle": "",
             "percentages": true,
-            "as": false,
+            "as": true,
             "raster": false,
             "scale": 100,
-            "fontSize": 34,
+            "fontSize": 13,
             "type": "series"
         };
         data = multipleSeries;
@@ -409,14 +409,14 @@
             "stacked": false,
             "decimalsValue": 0,
             "legendaPositie": "onder",
-            "colorPalet": "groen",
-            "chartTitle": "Test " + typeChart,
+            "colorPalet": "blauw-rood",
+            "chartTitle": "",
             "chartSubtitle": "",
             "percentages": true,
             "as": true,
             "raster": true,
             "scale": 0,
-            "fontSize": '14px',
+            "fontSize": 11,
             "type": "series"
         };
         exportSettings = {
@@ -426,14 +426,14 @@
             "stacked": false,
             "decimalsValue": 0,
             "legendaPositie": "onder",
-            "colorPalet": "oranje",
-            "chartTitle": "Test " + typeChart,
+            "colorPalet": "blauw-rood",
+            "chartTitle": "",
             "chartSubtitle": "",
             "percentages": false,
             "as": true,
-            "raster": true,
+            "raster": false,
             "scale": 0,
-            "fontSize": 34,
+            "fontSize": 13,
             "type": "series"
         };
         data = multipleSeries;
@@ -446,7 +446,7 @@
             "hideCumulative": false,
             "typeChart": typeChart,
             "stacked": false,
-            "decimalsValue": 1,
+            "decimalsValue": 0,
             "legendaPositie": "onder",
             "colorPalet": "oranje",
             "chartTitle": "Prijsmeter",
@@ -455,7 +455,7 @@
             "as": true,
             "raster": true,
             "scale": 0,
-            "fontSize": 14,
+            "fontSize": 11,
             "type": "serie"
         };
         exportSettings = {
@@ -463,16 +463,16 @@
             "hideCumulative": false,
             "typeChart": typeChart,
             "stacked": false,
-            "decimalsValue": 2,
+            "decimalsValue": 0,
             "legendaPositie": "onder",
             "colorPalet": "oranje",
             "chartTitle": "Prijsmeter",
             "chartSubtitle": "",
             "percentages": true,
             "as": true,
-            "raster": true,
+            "raster": false,
             "scale": 0,
-            "fontSize": 34,
+            "fontSize": 13,
             "type": "serie"
         };
         data = prijsmeter;
@@ -485,10 +485,10 @@
             "hideCumulative": false,
             "typeChart": typeChart,
             "stacked": false,
-            "decimalsValue": 2,
+            "decimalsValue": 0,
             "legendaPositie": "rechts",
             "colorPalet": "dr",
-            "chartTitle": "Test " + typeChart,
+            "chartTitle": "",
             "chartSubtitle": "",
             "percentages": true,
             "as": false,
@@ -505,13 +505,13 @@
             "decimalsValue": 0,
             "legendaPositie": "onder",
             "colorPalet": "oranje",
-            "chartTitle": "Test " + typeChart,
+            "chartTitle": "",
             "chartSubtitle": "",
             "percentages": true,
             "as": false,
-            "raster": true,
+            "raster": false,
             "scale": 0,
-            "fontSize": 34,
+            "fontSize": 13,
             "type": "series"
         };
         data = singleSerieAsSeries;
@@ -522,7 +522,7 @@
         if (settings != null && data != null) {
           let chart = new directcharts.Chart(data);
           let intersections = directcharts.intersections;
-          
+
           let chartOptions = chart.chartOptions(settings, exportSettings, data);
 
           // check if valid data is given
