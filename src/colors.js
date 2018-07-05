@@ -75,16 +75,17 @@ export default class Colors {
   }
 
   redBlueColors(reversed) {
-    let numberOfColors = this.numberOfColors / 2;
+    let numberOfColors = this.numberOfColors / 3;
     let rood = this.redColors(numberOfColors, 2);
     let blauw = this.blueColors(numberOfColors, 2);
-    var roodReversed = this.redColors(numberOfColors).reverse();
-    var blauwReversed = this.blueColors(numberOfColors).reverse();
+    let grey = this.greyColors(numberOfColors, 2);
+    let roodReversed = this.redColors(numberOfColors).reverse();
+    let blauwReversed = this.blueColors(numberOfColors).reverse();
 
     if (reversed) {
-      return blauw.concat(roodReversed);
+      return blauw.concat(grey, roodReversed);
     }
-    return rood.concat(blauwReversed);
+    return rood.concat(grey, blauwReversed);
   }
 
   redColors(numberOfColors, spread) {
@@ -128,6 +129,12 @@ export default class Colors {
 
   blackColors(numberOfColors, spread) {
     let colors = ['#000000', '#b2b2b2'];
+
+    return Chroma.scale(colors).colors(numberOfColors);
+  }
+
+  greyColors(numberOfColors, spread) {
+    let colors = ['#989898', '#efefef'];
 
     return Chroma.scale(colors).colors(numberOfColors);
   }
