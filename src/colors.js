@@ -20,6 +20,9 @@ export default class Colors {
     if (this.type === 'dr') {
       return this.drColors();
     }
+    if (this.type === 'nps') {
+      return this.npsColors();
+    }
     if (this.type === 'rood-blauw') {
       return this.redBlueColors(false);
     }
@@ -90,16 +93,20 @@ export default class Colors {
     numberOfGreys = this.numberOfColors - numberOfBlues - numberOfReds;
 
     // build list of colors
-    red = this.redColors(numberOfReds, 2);
-    blue = this.blueColors(numberOfBlues, 2);
-    grey = this.greyColors(numberOfGreys, 2);
-    redReversed = this.redColors(numberOfReds, 2).reverse();
-    blueReversed = this.blueColors(numberOfBlues, 2).reverse();
+    red = numberOfReds > 0 ? this.redColors(numberOfReds, 2) : [];
+    blue = numberOfBlues > 0 ? this.blueColors(numberOfBlues, 2) : [];
+    grey = numberOfGreys > 0 ? this.greyColors(numberOfGreys, 2) : [];
+    redReversed = numberOfReds > 0 ? this.redColors(numberOfReds, 2).reverse() : [];
+    blueReversed = numberOfReds > 0 ? this.blueColors(numberOfBlues, 2).reverse() : [];
 
     if (reversed) {
       return blue.concat(grey, redReversed);
     }
     return red.concat(grey, blueReversed);
+  }
+
+  npsColors() {
+    return ['#e2001a', '#ffcc00', '#57ab27'];
   }
 
   redColors(numberOfColors, spread) {
