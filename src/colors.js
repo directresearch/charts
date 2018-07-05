@@ -75,17 +75,31 @@ export default class Colors {
   }
 
   redBlueColors(reversed) {
-    let numberOfColors = this.numberOfColors / 3;
-    let rood = this.redColors(numberOfColors, 2);
-    let blauw = this.blueColors(numberOfColors, 2);
-    let grey = this.greyColors(numberOfColors, 2);
-    let roodReversed = this.redColors(numberOfColors).reverse();
-    let blauwReversed = this.blueColors(numberOfColors).reverse();
+    let numberOfBlues = 0;
+    let numberOfReds = 0;
+    let numberOfGreys = 0;
+    let red = [];
+    let blue = [];
+    let grey = [];
+    let redReversed = [];
+    let blueReversed = [];
+
+    // select number of colors
+    numberOfBlues = Math.ceil(this.numberOfColors / 3);
+    numberOfReds = Math.ceil(this.numberOfColors / 3);
+    numberOfGreys = this.numberOfColors - numberOfBlues - numberOfReds;
+
+    // build list of colors
+    red = this.redColors(numberOfReds, 2);
+    blue = this.blueColors(numberOfBlues, 2);
+    grey = this.greyColors(numberOfGreys, 2);
+    redReversed = this.redColors(numberOfReds, 2).reverse();
+    blueReversed = this.blueColors(numberOfBlues, 2).reverse();
 
     if (reversed) {
-      return blauw.concat(grey, roodReversed);
+      return blue.concat(grey, redReversed);
     }
-    return rood.concat(grey, blauwReversed);
+    return red.concat(grey, blueReversed);
   }
 
   redColors(numberOfColors, spread) {
@@ -94,7 +108,11 @@ export default class Colors {
     if (spread === 3) {
       colors = ['#4f0700', '#e2001a', '#f6b2ba'];
     }
-    return Chroma.scale(colors).colors(numberOfColors);
+
+    if (numberOfColors > 1) {
+      return Chroma.scale(colors).colors(numberOfColors);
+    }
+    return [colors[0]];
   }
 
   blueColors(numberOfColors, spread) {
@@ -103,7 +121,11 @@ export default class Colors {
     if (spread === 3) {
       colors = ['#003349', '#009bd5', '#b2e1f2'];
     }
-    return Chroma.scale(colors).colors(numberOfColors);
+
+    if (numberOfColors > 1) {
+      return Chroma.scale(colors).colors(numberOfColors);
+    }
+    return [colors[0]];
   }
 
   greenColors(numberOfColors, spread) {
@@ -112,30 +134,46 @@ export default class Colors {
     if (spread === 3) {
       colors = ['#22440f', '#57ab27', '#cce6be'];
     }
-    return Chroma.scale(colors).colors(numberOfColors);
+
+    if (numberOfColors > 1) {
+      return Chroma.scale(colors).colors(numberOfColors);
+    }
+    return [colors[0]];
   }
 
   yellowColors(numberOfColors, spread) {
     let colors = ['#ffcc00', '#fff0b2'];
 
-    return Chroma.scale(colors).colors(numberOfColors);
+    if (numberOfColors > 1) {
+      return Chroma.scale(colors).colors(numberOfColors);
+    }
+    return [colors[0]];
   }
 
   orangeColors(numberOfColors, spread) {
     let colors = ['#ad5103', '#ed8c00', '#f7c69c'];
 
-    return Chroma.scale(colors).colors(numberOfColors);
+    if (numberOfColors > 1) {
+      return Chroma.scale(colors).colors(numberOfColors);
+    }
+    return [colors[0]];
   }
 
   blackColors(numberOfColors, spread) {
     let colors = ['#000000', '#b2b2b2'];
 
-    return Chroma.scale(colors).colors(numberOfColors);
+    if (numberOfColors > 1) {
+      return Chroma.scale(colors).colors(numberOfColors);
+    }
+    return [colors[0]];
   }
 
   greyColors(numberOfColors, spread) {
     let colors = ['#989898', '#efefef'];
 
-    return Chroma.scale(colors).colors(numberOfColors);
+    if (numberOfColors > 1) {
+      return Chroma.scale(colors).colors(numberOfColors);
+    }
+    return [colors[0]];
   }
 }
