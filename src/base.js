@@ -256,7 +256,7 @@ export default class Base {
   xAxis(settings) {
     let gridLineWidth = 0;
     let categories = [];
-    let visible = true;
+    let visible = false;
     let axis = true;
     let type = 'serie';
 
@@ -284,7 +284,8 @@ export default class Base {
         style: {
           color: 'black',
           fontSize: this.fontSize
-        }
+        },
+        enabled: false
       }
     };
   }
@@ -305,15 +306,23 @@ export default class Base {
     let max = settings.scale > 0 ? settings.scale : undefined; // do we need a different scale?
     let min = 0;
     let raster = false;
+    let xas = false;
 
     if (settings) {
       raster = settings.raster;
+      xas = settings.xas;
     }
 
     // hulplijnen tonen aan/uit
     if (raster === true) {
       visible = true;
       gridLineWidth = 1;
+    }
+
+    // x-as percentages tonen aan/uit
+    // TODO: zorg er voor dat de percentages op de x-as wel of niet getoond worden.....
+    if (xas === true) {
+      visible = true;
     }
 
     return {
