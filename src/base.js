@@ -301,7 +301,7 @@ export default class Base {
    */
   yAxis(settings) {
     let gridLineWidth = 0;
-    let visible = false;
+    let visible = true;
     let title = false;
     let max = settings.scale > 0 ? settings.scale : undefined; // do we need a different scale?
     let min = 0;
@@ -313,17 +313,8 @@ export default class Base {
       xas = settings.xas;
     }
 
-    // hulplijnen tonen aan/uit
-    if (raster === true) {
-      visible = true;
-      gridLineWidth = 1;
-    }
-
-    // x-as percentages tonen aan/uit
-    // TODO: zorg er voor dat de percentages op de x-as wel of niet getoond worden.....
-    if (xas === true) {
-      visible = true;
-    }
+    // gridlines show/hide
+    gridLineWidth = raster === true ? '1' : '0';
 
     return {
       title: title,
@@ -338,7 +329,8 @@ export default class Base {
         style: {
           color: 'black',
           fontSize: this.fontSize
-        }
+        },
+        enabled: xas
       }
     };
   }
