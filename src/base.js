@@ -256,7 +256,7 @@ export default class Base {
   xAxis(settings) {
     let gridLineWidth = 0;
     let categories = [];
-    let visible = false;
+    let visible = true;
     let axis = true;
     let type = 'serie';
 
@@ -284,8 +284,7 @@ export default class Base {
         style: {
           color: 'black',
           fontSize: this.fontSize
-        },
-        enabled: false
+        }
       }
     };
   }
@@ -306,9 +305,10 @@ export default class Base {
     let max = settings.scale > 0 ? settings.scale : undefined; // do we need a different scale?
     let min = 0;
     let raster = false;
-    let xas = false;
+    let xas = true;
 
     if (settings) {
+      console.log(settings);
       raster = settings.raster;
       xas = settings.xas;
     }

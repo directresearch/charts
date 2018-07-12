@@ -1,6 +1,6 @@
 {
   "name": "directcharts",
-  "version": "1.9.10",
+  "version": "1.9.11",
   "description": "DirectResearch Charts implementation",
   "main": "build/directcharts.min.js",
   "scripts": {
