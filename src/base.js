@@ -308,7 +308,6 @@ export default class Base {
     let xas = true;
 
     if (settings) {
-      console.log(settings);
       raster = settings.raster;
       xas = settings.xas;
     }
