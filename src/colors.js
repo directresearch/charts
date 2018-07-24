@@ -29,6 +29,12 @@ export default class Colors {
     if (this.type === 'blauw-rood') {
       return this.redBlueColors(true);
     }
+    if (this.type === 'blauw-rood-plus') {
+      return this.redBluePlusColors(true);
+    }
+    if (this.type === 'rood-blauw-plus') {
+      return this.redBluePlusColors(false);
+    }
     if (this.type === 'rood') {
       return this.redColors(this.numberOfColors, 3);
     }
@@ -183,4 +189,51 @@ export default class Colors {
     }
     return [colors[0]];
   }
+
+  redBluePlusColors(reversed) {
+    let numberOfBlues = 0;
+    let numberOfReds = 0;
+    let numberOfGreys = 0;
+    let red = [];
+    let blue = [];
+    let grey = [];
+    let redReversed = [];
+    let blueReversed = [];
+    let numberOfColors = this.numberOfColors - 1; // The last one is grey so this is the count for red and blue
+    let generatedColors = [];
+
+    // new settings.
+    if (this.isEven(numberOfColors)) {
+      numberOfBlues = Math.floor(this.numberOfColors / 2);
+      numberOfReds = Math.floor(this.numberOfColors / 2);
+      numberOfGreys = 0;
+    } else {
+      numberOfBlues = (this.numberOfColors / 2) - 1;
+      numberOfReds = (this.numberOfColors / 2) - 1;
+      numberOfGreys = 1;
+    }
+
+    // build list of colors
+    red = numberOfReds > 0 ? this.redColors(numberOfReds, 2) : [];
+    blue = numberOfBlues > 0 ? this.blueColors(numberOfBlues, 2) : [];
+    grey = numberOfGreys > 0 ? this.greyColors(numberOfGreys, 2) : [];
+    redReversed = numberOfReds > 0 ? this.redColors(numberOfReds, 2).reverse() : [];
+    blueReversed = numberOfReds > 0 ? this.blueColors(numberOfBlues, 2).reverse() : [];
+
+    if (reversed) {
+      generatedColors = blue.concat(grey, redReversed);
+      generatedColors[numberOfColors] = '#989898';
+      // return blue.concat(grey, redReversed);
+      return generatedColors;
+    }
+    generatedColors = red.concat(grey, blueReversed);
+    generatedColors[numberOfColors] = '#989898';
+    // return red.concat(grey, blueReversed);
+    return generatedColors;
+  }
+
+  isEven(n) {
+    return n % 2 === 0;
+  }
+
 }
