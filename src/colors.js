@@ -191,26 +191,21 @@ export default class Colors {
   }
 
   redBluePlusColors(reversed) {
-    let numberOfBlues = 0;
-    let numberOfReds = 0;
-    let numberOfGreys = 0;
+    let numberOfBlues = (this.numberOfColors / 2) - 1; // starting with number of blue for odd count
+    let numberOfReds = (this.numberOfColors / 2) - 1;  // starting with number of red for odd count
+    let numberOfGreys = 1;  // starting with one grey for odd count
     let red = [];
     let blue = [];
     let grey = [];
     let redReversed = [];
     let blueReversed = [];
-    let numberOfColors = this.numberOfColors - 1; // The last one is grey so this is the count for red and blue
     let generatedColors = [];
+    let colorLast = '#C4C4C4'; // The last option e.g. 'Weet niet'
 
-    // new settings.
-    if (this.isEven(numberOfColors)) {
+    if (this.isEven(this.numberOfColors - 1)) {
       numberOfBlues = Math.floor(this.numberOfColors / 2);
       numberOfReds = Math.floor(this.numberOfColors / 2);
       numberOfGreys = 0;
-    } else {
-      numberOfBlues = (this.numberOfColors / 2) - 1;
-      numberOfReds = (this.numberOfColors / 2) - 1;
-      numberOfGreys = 1;
     }
 
     // build list of colors
@@ -222,13 +217,11 @@ export default class Colors {
 
     if (reversed) {
       generatedColors = blue.concat(grey, redReversed);
-      generatedColors[numberOfColors] = '#989898';
-      // return blue.concat(grey, redReversed);
+      generatedColors[this.numberOfColors - 1] = colorLast;
       return generatedColors;
     }
     generatedColors = red.concat(grey, blueReversed);
-    generatedColors[numberOfColors] = '#989898';
-    // return red.concat(grey, blueReversed);
+    generatedColors[this.numberOfColors - 1] = colorLast;
     return generatedColors;
   }
 
