@@ -192,8 +192,8 @@ export default class Colors {
 
   redBluePlusColors(reversed) {
     let numberOfBlues = (this.numberOfColors / 2) - 1; // starting with number of blue for odd count
-    let numberOfReds = (this.numberOfColors / 2) - 1;  // starting with number of red for odd count
-    let numberOfGreys = 1;  // starting with one grey for odd count
+    let numberOfReds = (this.numberOfColors / 2) - 1; // starting with number of red for odd count
+    let numberOfGreys = 1; // starting with one grey for odd count
     let red = [];
     let blue = [];
     let grey = [];
